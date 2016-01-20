@@ -1,0 +1,143 @@
+<!doctype html>
+<html ng-app="showroomApp" ng-controller="gameListCtrl">
+<head>
+    <title>High 5 Showroom</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/idangerous.swiper.min.css">
+    <link rel="stylesheet" href="css/idangerous.swiper.scrollbar.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css?v=1">
+</head>
+<body>
+    <div id="top">
+        <div id="top-bar1"></div>
+        <div id="logo"></div>
+        <div id="top-bar2"></div>
+    </div>
+    <div id="btm"></div>
+    <!--<div class="main-preloader"><img src="images/preloader.gif"></div>-->
+    <div class="filter-nav">
+        <div class="filter-by">
+            <div class="result-count"></div>
+            <div style="margin-left:30px; margin-top:5px">
+                    <div id="field"><input style="margin:0" autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="search" data-items="8" maxlength="50"><button id="clear-search-bt" class="" type="button">X</button></div>
+            </div>
+            <div class="carousel-search hidden-sm" style="margin:5px">
+                <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">NAME: A to Z <span class="caret"></span><span class="caret2"></span></a>
+                    <ul class="dropdown-menu" style="padding:0; min-width:240px">
+                        <li><a href="#">NAME: A to Z</a></li>
+                        <li><a href="#">NAME: Z to A</a></li>
+                        <li><a href="#">RELEASE: Newest to Oldest</a></li>
+                        <li><a href="#">RELEASE: Oldest to Newest</a></li>
+                        <li><a href="#">POPULARITY: Most to Least</a></li>
+                        <li><a href="#">POPULARITY: Least to Most</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="title"><p>SORT BY:</p></div>
+            <div style="margin:5px 20px 5px 10px"><button id="clear-bt" class="btn" type="button">clear all</button></div>
+            <div class="border-right"></div>
+            <div class="dropdown-tab by-platform">
+                <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                    <p>DISTRIBUTION<span class="caret"></span><span class="caret2"></span></p>
+                </div>
+                <div class="dropdown-menu filter-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <p style="text-align:left">PLATFORMS</p>
+                    <ul class="platforms-menu filter-menu"></ul>
+                    <div class="clearFix"></div>
+                    <p style="text-align:left">CASINOS</p>
+                    <ul class="casinos-menu filter-menu"></ul>
+                    <div class="clearFix"></div>
+                    <p style="text-align:left">AVAILABILITY</p>
+                    <ul class="market-menu filter-menu"></ul>
+                    <div class="clearFix"></div>
+                    <p style="text-align:left">PUBLISHERS</p>
+                    <ul class="publishers-menu filter-menu"></ul>
+                    <div class="clearFix"></div>
+                </div>
+            </div>
+            <div class="border-right"></div>
+            <div class="dropdown-tab by-feature">
+                <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                    <p>FEATURES<span class="caret"></span><span class="caret2"></span></p>
+                </div>
+                <ul class="dropdown-menu filter-menu features-menu" role="menu" aria-labelledby="dropdownMenu1"></ul>
+            </div>
+            <div class="border-right"></div>
+            <div class="dropdown-tab by-themes">
+                <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                    <p>THEMES<span class="caret"></span><span class="caret2"></span></p>
+                </div>
+                <ul class="dropdown-menu filter-menu themes-menu" role="menu" aria-labelledby="dropdownMenu1"></ul>
+            </div>
+            <div class="title"><p>FILTER BY:</p></div>
+
+        </div>
+    </div>
+    <div class="clearFix"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="games-container" >
+                    <div class="game" game-block ng-repeat="game in games" datasource="game" index="$index"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Scrollbar: -->
+        <div class="swiper-scrollbar" style="margin-top:-1000px"></div> 
+        <div class="scroll-arrow left"></div>
+        <div class="scroll-arrow right"></div>
+    </div>
+
+    <div>{{winWidth}}</div>
+    
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span8 legalinfo">
+                    © 2014 High 5 Games, LLC. All Rights Reserved.  | Terms of Service  |  Privacy Policy  |  Legal Notices
+                    | <a href="http://h5gshowroom.com/signout">Sign Out</a>
+                                            | <a href="http://h5gshowroom.com/admin">Admin</a>
+                                    </div>
+                <div class="span2 pull-right">
+                    <img src="images/prlogo.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-modal" class="game-modal">
+        <div class="game-modal-content">
+            <div id="game-preloader">
+                <img src="images/preloader.jpg" class="game-preloader-splash">
+                <img src="images/preloader_spinner.gif" class="game-preloader-spinner">
+            </div>
+            <div class="flash-content-container">
+                <div id="flash-content"></div>
+            </div>
+        </div>
+        <button id="game-modal-availability-button" class="game-modal-availability-button" data-game-id="">Availability</button>
+        <img src="images/modal_logo.png" class="game-modal-logo">
+        <img src="images/modal_wing_left.png" class="game-modal-wing left">
+        <img src="images/modal_wing_right.png" class="game-modal-wing right">
+    </div>
+
+    <div id="game-detail-container"></div>
+    <div id="game-availability-container"></div>
+
+    <!--<input type="hidden" id="js-config" value="">    -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/idangerous.swiper.min.js"></script>
+    <script src="js/idangerous.swiper.scrollbar.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/base.js"></script>
+    <script src="js/game.js?v=1"></script>-->
+    <script src="js/h5gf.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/providers.js"></script>
+
+</body>
+</html>
